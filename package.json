@@ -1,0 +1,49 @@
+{
+  "name": "confusion-metrics",
+  "version": "0.1.0",
+  "description": "Generate confusion matrix metrics (TP, TN, FP, FN, TPR, FPR, FNR, TNR, Prevalence, PPV, NPV, LR+, LR-, ACC, FDR, FOR, MK, DOR, BA, F1, FM, MCC, TS/CSI/Jaccard).",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup src/index.ts --format esm,cjs --dts --clean",
+    "test": "vitest run",
+    "dev": "vitest",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm run test && npm run build"
+  },
+  "keywords": [
+    "confusion-matrix",
+    "metrics",
+    "machine-learning",
+    "evaluation",
+    "classification"
+  ],
+  "author": "realog32",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/realog32/confusion-metrics.git"
+  },
+  "bugs": {
+    "url": "https://github.com/realog32/confusion-metrics/issues"
+  },
+  "homepage": "https://github.com/realog32/confusion-metrics#readme",
+  "devDependencies": {
+    "@types/node": "^24.3.1",
+    "tsup": "^8.5.0",
+    "typescript": "^5.9.2",
+    "vitest": "^3.2.4"
+  }
+}
