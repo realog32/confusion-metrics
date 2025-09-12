@@ -1,37 +1,70 @@
+/** Confusion matrix counts for TP, TN, FP, and FN */
 export interface ConfusionCounts {
+  /** True positives */
   tp: number;
+  /** True negatives */
   tn: number;
+  /** False positives */
   fp: number;
+  /** False negatives */
   fn: number;
 }
 
+/** Confusion matrix metrics for TP, TN, FP, FN, TPR, FPR, FNR, TNR, PPV, NPV, LR+, LR-, ACC, FDR, FOR, MK, DOR, BA, F1, FM, MCC, TS, etc. */
 export interface ConfusionMetrics extends ConfusionCounts {
+  /** Total number of samples */
   total: number;
-  prevalence: number; // P / total
-  tpr: number; // sensitivity, recall
+  /** Prevalence (P/total) */
+  prevalence: number;
+  /** True positive rate / Sensitivity / Recall */
+  tpr: number;
+  /** False positive rate / Fall-out */
   fpr: number;
+  /** False negative rate / Miss rate */
   fnr: number;
-  tnr: number; // specificity
-  ppv: number; // precision
+  /** True negative rate / Specificity / Selectivity */
+  tnr: number;
+  /** Positive predictive value / Precision */
+  ppv: number;
+  /** Negative predictive value */
   npv: number;
-  lrPlus: number; // LR+
-  lrMinus: number; // LR-
-  accuracy: number; // ACC
+  /** Positive likelihood ratio */  
+  lrPlus: number;
+  /** Negative likelihood ratio */
+  lrMinus: number;
+  /** Accuracy (tp + tn / total) */
+  accuracy: number;
+  /** False discovery rate */
   fdr: number;
-  for: number; // false omission rate
-  markedness: number; // MK
-  dor: number; // diagnostic odds ratio
-  balancedAccuracy: number; // BA
-  f1: number; // F1 score
-  fm: number; // Fowlkes–Mallows index
-  mcc: number; // Matthews correlation coefficient
-  ts: number; // threat score / critical success index / Jaccard for positive class
+  /** False omission rate */
+  for: number;
+  /** Markedness / MK / deltaP */
+  markedness: number;
+  /** Diagnostic odds ratio */
+  dor: number;
+  /** Balanced accuracy */  
+  balancedAccuracy: number;
+  /** F1 score */
+  f1: number;
+  /** Fowlkes–Mallows index */
+  fm: number;
+  /** Matthews correlation coefficient / Phi coefficient */
+  mcc: number;
+  /** Threat score / critical success index / Jaccard index */
+  ts: number;
 }
 
 const divide = (numerator: number, denominator: number): number => {
   return denominator === 0 ? Number.NaN : numerator / denominator;
 };
 
+/**
+ * Compute confusion counts from predicted and actual labels
+ * @param predicted Predicted labels
+ * @param actual Actual labels
+ * @param positiveValue Positive value
+ * @returns Confusion counts
+ */
 export function computeCountsFromLabels<T = number | boolean | string>(
   predicted: Array<T>,
   actual: Array<T>,
@@ -68,6 +101,11 @@ export function computeCountsFromLabels<T = number | boolean | string>(
   return { tp, tn, fp, fn };
 }
 
+/**
+ * Compute confusion matrix metrics from actual and predicted condition counts.
+ * @param counts Confusion counts
+ * @returns Confusion metrics
+ */
 export function computeMetricsFromCounts(counts: ConfusionCounts): ConfusionMetrics {
   const { tp, tn, fp, fn } = counts;
   const positive = tp + fn;
@@ -125,6 +163,13 @@ export function computeMetricsFromCounts(counts: ConfusionCounts): ConfusionMetr
   };
 }
 
+/**
+ * Compute confusion matrix metrics from predicted and actual labels
+ * @param predicted Predicted labels
+ * @param actual Actual labels
+ * @param positiveValue Positive value
+ * @returns Confusion metrics
+ */
 export function computeMetricsFromLabels<T = number | boolean | string>(
   predicted: Array<T>,
   actual: Array<T>,
@@ -139,5 +184,3 @@ export default {
   computeMetricsFromCounts,
   computeMetricsFromLabels,
 };
-
-

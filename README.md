@@ -27,15 +27,27 @@ const m = computeMetricsFromLabels(predicted, actual);
 
 ### Metrics
 
-- TP, TN, FP, FN
-- TPR/Recall, FPR, FNR, TNR/Specificity
-- Prevalence, PPV (Precision), NPV
-- LR+, LR-
+- True Positive (TP)
+- True Negative (TN)
+- False Positive (FP)
+- False Negative (FN)
+- True Positive Rate (TPR) / Recall
+- False Positive Rate (FPR)
+- False Negative Rate (FNR)
+- True Negative Rate (TNR) / Specificity
+- Prevalence
+- Positive Predictive Value (PPV) / Precision
+- Negative Predictive Value (NPV)
+- Positive Likelihood Ratio (LR+)
+- Negative Likelihood Ratio (LR-)
 - Accuracy
-- FDR, FOR, Markedness (MK)
+- False Discovery Rate (FDR)
+- False Omission Rate (FOR)
+- Markedness (MK)
 - DOR (Diagnostic Odds Ratio)
 - Balanced Accuracy (BA)
-- F1 score, Fowlkes–Mallows (FM)
+- F1 score
+- Fowlkes–Mallows (FM)
 - MCC (Matthews correlation coefficient)
 - Threat Score (TS) / CSI / Jaccard (positive class)
 
