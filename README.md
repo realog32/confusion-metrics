@@ -1,6 +1,6 @@
 ## confusion-metrics
 
-A tiny library to compute confusion matrix metrics for single-class logistic regression ML models...
+A tiny library to compute confusion matrix metrics for single-class binary classification ML models.
 
 ### Install
 
